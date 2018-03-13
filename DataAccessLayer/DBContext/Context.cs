@@ -40,7 +40,7 @@ namespace DataAccessLayer.DBContext
                 .IsUnique();
 
             //Set required constraint to properties of Employee entity 
-            modelBuilder.Entity < Employee>()
+            modelBuilder.Entity<Employee>()
             .Property(e => e.Name)
             .IsRequired();
 
@@ -64,7 +64,7 @@ namespace DataAccessLayer.DBContext
             .Property(e => e.Address)
             .IsRequired();
 
-           
+
 
             //Map entity to table
             modelBuilder.Entity<Employee>().ToTable("Employee");

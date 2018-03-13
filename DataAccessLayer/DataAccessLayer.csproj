@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\Context.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Migrations\201803101622104_InitialCreate.cs" />
     <Compile Include="Migrations\201803101622104_InitialCreate.Designer.cs">
       <DependentUpon>201803101622104_InitialCreate.cs</DependentUpon>

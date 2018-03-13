@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using DataAccessLayer.Models;
 using DataAccessLayer.Repository;
@@ -140,14 +137,42 @@ namespace BusinessLayer.Services
             return EmployeeList;
 
         }
-
+        /// <summary>
+        /// Checks for 10 digit mobile number
+        /// </summary>
+        /// <param name="MobileNo"></param>
+        /// <returns></returns>
         public bool IsValidMobileNumber(long MobileNo)
         {
-            bool IsValidNo=default(bool);
+            bool IsValidNo = default(bool);
             IsValidNo = iEmployeeRepository.IsValidMobileNumber(MobileNo);
             return IsValidNo;
         }
 
-        
+        /// <summary>
+        /// Check whether mobile number registered and joining date is valid
+        /// </summary>
+        /// <param name="MobileNumber"></param>
+        /// <param name="JoinDate"></param>
+        /// <returns></returns>
+        public int IsValidDetails(long MobileNumber, DateTime JoinDate)
+        {
+            int flag = default(int);
+            bool IsValidNo = default(bool);
+            IsValidNo = IsValidMobileNumber(MobileNumber);
+
+            if (IsValidNo)
+            {
+                if (JoinDate.Date >= DateTime.Now.Date)
+                {
+                    flag = 0;
+                }
+                else
+                    flag = -1;
+            }
+            else
+                flag = 1;
+            return flag;
+        }
     }
 }

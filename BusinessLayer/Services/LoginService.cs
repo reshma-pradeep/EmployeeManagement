@@ -1,11 +1,6 @@
 ﻿using BusinessLayer.DataTransferObject;
 using DataAccessLayer.Models;
 using DataAccessLayer.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
@@ -29,8 +24,8 @@ namespace BusinessLayer.Services
         /// <returns></returns>
         public int GetUserStatus(LoginDto LoginDto)
         {
-            int UserStatus=default(int);
-            UserStatus = iLoginRepository.GetUserStatus(new Login{ Username = LoginDto.Username, Password = LoginDto.Password });
+            int UserStatus = default(int);
+            UserStatus = iLoginRepository.GetUserStatus(new Login { Username = LoginDto.Username, Password = LoginDto.Password });
             return UserStatus;
         }
 

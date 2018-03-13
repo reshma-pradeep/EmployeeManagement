@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -147,6 +146,12 @@ namespace DataAccessLayer.Repository
                 return EmployeeDetail.ToList();
             }
         }
+
+        /// <summary>
+        /// Checks whether mobile number is valid
+        /// </summary>
+        /// <param name="MobileNo"></param>
+        /// <returns></returns>
 
         public bool IsValidMobileNumber(long MobileNo)
         {

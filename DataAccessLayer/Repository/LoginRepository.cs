@@ -6,8 +6,7 @@ namespace DataAccessLayer.Repository
 {
     public class LoginRepository : ILoginRepository
     {
-        Context db = new Context();
-
+        
         /// <summary>
         /// Check whether user is validated to login
         /// </summary>
@@ -15,17 +14,20 @@ namespace DataAccessLayer.Repository
         /// <returns></returns>
         public int GetUserStatus(Login Login)
         {
-            var AdminUsers = db.Logins.Where(s => s.Username == Login.Username).Where(s => s.Password == Login.Password).Where(s=>s.Role=="Admin").FirstOrDefault();
-
-            if (AdminUsers != null)
-                return 0;
-            else
+            using (var db = new Context())
             {
-                var Users = db.Logins.Where(s => s.Username == Login.Username).Where(s => s.Password == Login.Password).Where(s => s.Role == "Employee").FirstOrDefault();
-                if (Users != null)
-                    return 1;
+                var AdminUsers = db.Logins.Where(s => s.Username == Login.Username).Where(s => s.Password == Login.Password).Where(s => s.Role == "Admin").FirstOrDefault();
+
+                if (AdminUsers != null)
+                    return 0;
                 else
-                    return 2;
+                {
+                    var Users = db.Logins.Where(s => s.Username == Login.Username).Where(s => s.Password == Login.Password).Where(s => s.Role == "Employee").FirstOrDefault();
+                    if (Users != null)
+                        return 1;
+                    else
+                        return 2;
+                }
             }
         }
 
@@ -37,7 +39,10 @@ namespace DataAccessLayer.Repository
         public string GetRole(string Username)
         {
             string Role = string.Empty;
-            Role = db.Logins.Where(s => s.Username == Username).Select(s => s.Role).FirstOrDefault();
+            using (var db = new Context())
+            {
+                Role = db.Logins.Where(s => s.Username == Username).Select(s => s.Role).FirstOrDefault();
+            }
             return Role;
         }
 

@@ -102,7 +102,9 @@ namespace EmployeeManagement.Controllers
             {
 
                 EmployeeView.DepartmentList = new SelectList(iEmployeeService.GetDepartmentList(), "Text", "Value");
-                flag = IsValidDetails(EmployeeView.MobileNumber, EmployeeView.DateOfJoining);
+
+                //Check whether mobile number and joining date is valid 
+                flag = iEmployeeService.IsValidDetails(EmployeeView.MobileNumber, EmployeeView.DateOfJoining);
                 if (flag == 0)
                 {
                     if (ModelState.IsValid)
@@ -208,34 +210,6 @@ namespace EmployeeManagement.Controllers
             }
             else
                 return RedirectToAction("Index", "Employee");
-        }
-
-
-        /// <summary>
-        /// Check whether mobile number registered and joining date is valid
-        /// </summary>
-        /// <param name="MobileNumber"></param>
-        /// <param name="JoinDate"></param>
-        /// <returns></returns>
-        [NonAction]
-        public int IsValidDetails(long MobileNumber, DateTime JoinDate)
-        {
-            int flag = default(int);
-            bool IsValidNo = default(bool);
-            IsValidNo = iEmployeeService.IsValidMobileNumber(MobileNumber);
-
-            if (IsValidNo)
-            {
-                if (JoinDate.Date >= DateTime.Now.Date)
-                {
-                    flag = 0;
-                }
-                else
-                    flag = -1;
-            }
-            else
-                flag = 1;
-            return flag;
         }
     }
 }

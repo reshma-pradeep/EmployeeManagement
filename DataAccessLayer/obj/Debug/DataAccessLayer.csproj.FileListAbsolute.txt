@@ -75,7 +75,6 @@ C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccess
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\bin\Debug\fr\Npgsql.resources.dll
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\bin\Debug\ja\Npgsql.resources.dll
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\bin\Debug\zh-CN\Npgsql.resources.dll
-C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.InitialCreate.resources
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.uniqueproperty.resources
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.EmployeeName.resources

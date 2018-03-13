@@ -1,0 +1,26 @@
+﻿@model IEnumerable<EmployeeManagement.ViewModel.EmployeeViewModel>
+@{Dictionary<int, string> images = (Dictionary<int, string>)ViewBag.Images;}
+@{
+    Layout = "~/Views/Shared/_LogoutLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+@foreach (var item in Model)
+{
+    <center><h1><i>My Profile</i></h1></center>
+    <div class="row well container" style="margin-top:100px">
+        <div class="col-sm-6">
+            <h2>@item.Name</h2><br />
+            <img alt="Employee Photo" style="height:300px;width:300px;" src="@Html.Raw("data:image/jpeg;base64," + images.Single(image => image.Key == item.EmployeeId).Value)" />
+        </div>
+        <div class="col-sm-6">
+            <h2>Basic details</h2><br />
+            <b>Birthdate:</b><label style="color:gray">@item.DateOfBirth.ToShortDateString()</label><br />
+            <b>Joined Since:</b><label style="color:gray">@item.DateOfJoining</label><br />
+            <b>Department:</b><label style="color:gray">@item.DepartmentName</label><br /><br />
+            <h2>Contact Information</h2><br />
+            <b>Moble Number:</b><label style="color:gray">@item.MobileNumber</label><br />
+            <b>Address:</b><label style="color:gray">@item.Address</label>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,94 @@
+﻿@model EmployeeManagement.ViewModel.EmployeeViewModel
+@{
+    Layout = "~/Views/Shared/_LogoutLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+    </script>
+}
+<script type="text/javascript" src="~/Scripts/Employee/EmployeeForm.js"></script>
+
+
+<h4>Hi Admin</h4>
+<div class="row">
+    <div class="col-sm-3"></div>
+
+    <div class="col-sm-6 form-horizontal">
+        <center>
+
+            @using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4"><label>Date Of Birth </label></div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="control-label col-md-4"><label>Date Of Joining</label></div>
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div>
+                    <img id="EmployeeImage" height="90" width="110" style="border:solid" />
+                </div>
+                <div>
+                    <label class="control-label col-md-4">Photo</label>
+                    <input type="file" title="search image" id="EmployeeImage" name="EmployeeImage" onchange="show(this)" />
+                    @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="control-label col-md-4"><label>Department </label></div>
+                    <div class="col-md-8 ">
+                        @Html.DropDownList("DepartmentId", new SelectList(Model.DepartmentList, "Text", "Value"), "Select Department", htmlAttributes: new { @class = "form-control", @id = "ddlDepartments" })
+                        @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8 ">
+                        @Html.TextAreaFor(model => model.Address, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <input class="btn btn-primary form-control" type="submit" name="Add" value="Add" />
+
+            }
+
+        </center>
+    </div>
+    <div class="col-sm-3">
+        <div class="row">
+
+            <div class="col col-xs-6 text-right">
+                <a href="/Admin/List" class="btn btn-sm btn-success btn-create">View All Employees</a>
+            </div>
+            <div class="col col-xs-6">
+            </div>
+        </div>
+    </div>
+</div>
+

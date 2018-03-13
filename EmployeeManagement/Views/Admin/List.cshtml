@@ -1,0 +1,109 @@
+﻿@model IEnumerable<EmployeeManagement.ViewModel.EmployeeViewModel>
+@{
+    Dictionary<int, string> images = (Dictionary<int, string>)ViewBag.Images;
+    Layout = "~/Views/Shared/_LogoutLayout.cshtml";
+}
+
+<div class="panel panel-default panel-table" style="margin-top:20px">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col col-xs-10">
+                <h3 class="panel-title"><b>Employee List</b></h3><br />
+            </div>
+            <div class="col col-xs-10"></div>
+        </div>
+        <div class="row">
+            <div class="col col-xs-10">
+
+                @using (Html.BeginForm("Search", "Admin", FormMethod.Get))
+                {
+                    <div class="row">
+                        <div class="col col-xs-5 form-group">
+                            <input type="text" class="form-control" id="txtIdName" name="txtIdName" placeholder="Id/Name/Department">
+                        </div>
+                        <div class="col col-xs-4 ">
+
+                            <input name="SearchDate" type="date" id="SearchDate" class="form-control" />
+
+                        </div>
+                        <div class="col col-xs-3">
+                            <input class="btn btn-primary" type="submit" name="submit" value="Search" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col col-xs-2 text-right">
+                <a href="/Admin/Index" class="btn btn-sm btn-primary btn-create">Create New</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-responsive w-auto">
+            <thead class="light-blue-skin">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateOfBirth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateOfJoining)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Photo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DepartmentName)
+                    </th>
+                   
+
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfJoining)
+                    </td>
+                    <td>
+                        <img alt="Employee Photo" style="height:100px;width:100px;" src="@Html.Raw("data:image/jpeg;base64," + images.Single(image => image.Key == item.EmployeeId).Value)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentName)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+

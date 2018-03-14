@@ -15,5 +15,6 @@ namespace BusinessLayer.Services
         IEnumerable<EmployeeDto> SearchEmployee(string SearchText, DateTime SearchDate);
         bool IsValidMobileNumber(long MobileNo);
         int IsValidDetails(long MobileNumber, DateTime JoinDate);
+        void Unlock(int id);
     }
 }

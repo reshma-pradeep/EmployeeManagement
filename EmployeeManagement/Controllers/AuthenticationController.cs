@@ -3,7 +3,7 @@ using BusinessLayer.DataTransferObject;
 using System.Web.Mvc;
 using EmployeeManagement.ViewModel;
 using System.Web.Security;
-
+using System;
 
 namespace EmployeeManagement.Controllers
 {
@@ -43,6 +43,7 @@ namespace EmployeeManagement.Controllers
         {
             bool IsAdmin = default(bool);
             int UserStatus = default(int);
+            bool IsLocked = default(bool);
 
             UserStatus = iLoginService.GetUserStatus(new LoginDto { Username = LoginView.Username, Password = LoginView.Password });
 
@@ -60,15 +61,33 @@ namespace EmployeeManagement.Controllers
                 IsAdmin = false;
                 Session["IsAdmin"] = IsAdmin;
                 Session["username"] = LoginView.Username;
-                FormsAuthentication.SetAuthCookie(LoginView.Username.ToString(), false);
 
-                return RedirectToAction("Index", "Employee");
+                int no = iLoginService.GetAttemptCount(LoginView.Username);
+                if (no != 3)
+                {
+                    iLoginService.NewValidAttempt(LoginView.Username);
 
+                    FormsAuthentication.SetAuthCookie(LoginView.Username.ToString(), false);
+
+                    return RedirectToAction("Index", "Employee");
+                }
+                else
+                {
+                    ModelState.AddModelError("CredentialError", "More than 3 attempts .User Account Blocked.Please contact system admin ");
+                    return View("Index");
+                }
             }
-
             else
             {
-                ModelState.AddModelError("CredentialError", "Invalid Username or Password");
+                if (LoginView.Username != "Admin")
+                {
+                    IsLocked = iLoginService.IsAccountLocked(LoginView.Username);
+
+                    if (IsLocked)
+                        ModelState.AddModelError("CredentialError", "More than 3 attempts .User Account Blocked.Please contact system admin ");
+                    else
+                        ModelState.AddModelError("CredentialError", "Invalid Username or Password");
+                }
                 return View("Index");
             }
 

@@ -15,6 +15,7 @@ namespace EmployeeManagement.ViewModel
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime DateOfJoining { get; set; }
 
         public byte[] Photo { get; set; }
@@ -25,7 +26,10 @@ namespace EmployeeManagement.ViewModel
         public long MobileNumber { get; set; }
         [Required]
         public int DepartmentId { get; set; }
-        
+        public int Age { get; set; }
+
+        public bool IsLocked { get; set; }
+
         public string DepartmentName { get; set; }
         public DateTime SearchDate { get; set; }
         public SelectList DepartmentList { get; set; }

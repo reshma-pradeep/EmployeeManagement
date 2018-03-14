@@ -124,6 +124,14 @@
     <Compile Include="Migrations\201803130441401_RequiredPropertyChange.Designer.cs">
       <DependentUpon>201803130441401_RequiredPropertyChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803140448590_NewPropertyAge.cs" />
+    <Compile Include="Migrations\201803140448590_NewPropertyAge.Designer.cs">
+      <DependentUpon>201803140448590_NewPropertyAge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803140945015_NewLockProperties.cs" />
+    <Compile Include="Migrations\201803140945015_NewLockProperties.Designer.cs">
+      <DependentUpon>201803140945015_NewLockProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -155,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803130441401_RequiredPropertyChange.resx">
       <DependentUpon>201803130441401_RequiredPropertyChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803140448590_NewPropertyAge.resx">
+      <DependentUpon>201803140448590_NewPropertyAge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803140945015_NewLockProperties.resx">
+      <DependentUpon>201803140945015_NewLockProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

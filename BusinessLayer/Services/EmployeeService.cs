@@ -37,6 +37,7 @@ namespace BusinessLayer.Services
             EmployeeDto.Photo = Employee.Photo;
             EmployeeDto.Address = Employee.Address;
             EmployeeDto.EmployeeId = Employee.EmployeeId;
+            EmployeeDto.Age = Employee.Age;
 
             return EmployeeDto;
         }
@@ -61,7 +62,9 @@ namespace BusinessLayer.Services
                     DepartmentName = Employees.Department.Name,
                     Address = Employees.Address,
                     MobileNumber = Employees.MobileNumber,
-                    EmployeeId = Employees.EmployeeId
+                    EmployeeId = Employees.EmployeeId,
+                    Age=Employees.Age,
+                    IsLocked=Employees.IsLocked
                 }
                 );
             }
@@ -96,7 +99,8 @@ namespace BusinessLayer.Services
                 Photo = EmployeeDto.Photo,
                 DepartmentId = EmployeeDto.DepartmentId,
                 MobileNumber = EmployeeDto.MobileNumber,
-                Address = EmployeeDto.Address
+                Address = EmployeeDto.Address,
+                Age=EmployeeDto.Age
             });
 
             return IsAdded;
@@ -173,6 +177,11 @@ namespace BusinessLayer.Services
             else
                 flag = 1;
             return flag;
+        }
+
+        public void Unlock(int id)
+        {
+            iEmployeeRepository.Unlock(id);
         }
     }
 }

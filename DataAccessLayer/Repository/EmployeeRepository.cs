@@ -165,5 +165,19 @@ namespace DataAccessLayer.Repository
             }
         }
 
+        /// <summary>
+        /// Unloack password of user by system admin
+        /// </summary>
+        /// <param name="id"></param>
+        public void Unlock(int id)
+        {
+            using (var Context = new Context())
+            {
+                var Employee = Context.Employees.Find(id);
+                Employee.IsLocked = false;
+                Context.SaveChanges();
+            }
+        }
+
     }
 }

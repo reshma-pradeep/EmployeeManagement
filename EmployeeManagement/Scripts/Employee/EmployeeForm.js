@@ -15,3 +15,16 @@ function filecheck(input) {
         alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
     }
 }
+
+function PopulateAge(input) {
+    dob = new Date($('#DateOfBirth').val());
+    alert(dob);
+    var today = new Date();
+    var age = today.getTime() - dob.getTime();
+    age = Math.floor(age / (1000 * 60 * 60 * 24 * 365.25));
+
+    var temp = 12;
+    $('#Age').val(age);
+    alert(age);
+    alert('Changed!');
+}

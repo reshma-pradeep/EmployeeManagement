@@ -42,13 +42,13 @@
             <thead class="light-blue-skin">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.EmployeeId)
+
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DateOfBirth)
+                        @Html.DisplayNameFor(model => model.Age)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.DateOfJoining)
@@ -60,10 +60,13 @@
                         @Html.DisplayNameFor(model => model.MobileNumber)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Address)
+                        @Html.DisplayNameFor(model => model.DepartmentName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DepartmentName)
+                        @Html.DisplayNameFor(model=>model.IsLocked)
+                    </th>
+                    <th>
+                        
                     </th>
 
 
@@ -74,13 +77,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.EmployeeId)
+                        @Html.HiddenFor(modelItem => item.EmployeeId)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                        @Html.DisplayFor(modelItem => item.Age)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateOfJoining)
@@ -91,13 +94,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.MobileNumber)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => item.DepartmentName)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsLocked)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Unlock","Admin", new { id = item.EmployeeId})"><i class="fa fa-unlock-alt"></i><span class="sr-only">Edit</span></a>
+                    </td>
                 </tr>
             }
 

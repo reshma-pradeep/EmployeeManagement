@@ -1,4 +1,5 @@
-﻿using BusinessLayer.DataTransferObject;
+﻿using System;
+using BusinessLayer.DataTransferObject;
 using DataAccessLayer.Models;
 using DataAccessLayer.Repository;
 
@@ -39,6 +40,52 @@ namespace BusinessLayer.Services
             string Role = string.Empty;
             Role = iLoginRepository.GetRole(Username);
             return Role;
+        }
+
+        /// <summary>
+        /// Check if user account is locked, if not locked update the invalid attempts
+        /// </summary>
+        /// <param name="Username"></param>
+        /// <returns></returns>
+        public bool IsAccountLocked(string Username)
+        {
+            int LoginAttemptCount = default(int);
+
+            //Check for current no of invalid attempts
+            LoginAttemptCount = iLoginRepository.GetAttemptCount(Username);
+
+            //Check If maximum no of attempts not completed
+            if (LoginAttemptCount != 3)
+            {
+                //If already 2 invalid attempts invalid lock the account
+                if (LoginAttemptCount == 2)
+                    iLoginRepository.LockAccount(Username);
+                iLoginRepository.NewInvalidAttempt(Username);
+                return false;
+            }
+            else
+                return true;
+        }
+
+        /// <summary>
+        /// Validate new attempt for each successful authentication
+        /// </summary>
+        /// <param name="Username"></param>
+        public void NewValidAttempt(string Username)
+        {
+            iLoginRepository.NewValidAttempt(Username);
+        }
+
+        /// <summary>
+        /// Retrieve the no of invalid attempts done by the user
+        /// </summary>
+        /// <param name="Username"></param>
+        public int GetAttemptCount(string Username)
+        {
+            int LoginAttemptCount = default(int);
+
+            LoginAttemptCount = iLoginRepository.GetAttemptCount(Username);
+            return LoginAttemptCount;
         }
     }
 }

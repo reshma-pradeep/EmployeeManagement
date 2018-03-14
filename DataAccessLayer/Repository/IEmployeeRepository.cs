@@ -14,5 +14,6 @@ namespace DataAccessLayer.Repository
         IEnumerable<Employee> GetEmployeeDetail(string Username);
         IEnumerable<Employee> SearchEmployee(string SearchText, DateTime SearchDate);
         bool IsValidMobileNumber(long MobileNo);
+        void Unlock(int id);
     }
 }

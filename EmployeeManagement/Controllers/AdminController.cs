@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace EmployeeManagement.Controllers
 {
-    [Authorize]
+
     public class AdminController : Controller
     {
         private IEmployeeService iEmployeeService;
@@ -39,6 +39,7 @@ namespace EmployeeManagement.Controllers
             EmployeeViewModel.DepartmentName = EmployeeDto.DepartmentName;
             EmployeeViewModel.Address = EmployeeDto.Address;
             EmployeeViewModel.MobileNumber = EmployeeDto.MobileNumber;
+            EmployeeViewModel.Age = EmployeeDto.Age;
 
             return EmployeeViewModel;
         }
@@ -63,7 +64,9 @@ namespace EmployeeManagement.Controllers
                     DepartmentName = Employees.DepartmentName,
                     Address = Employees.Address,
                     MobileNumber = Employees.MobileNumber,
-                    EmployeeId = Employees.EmployeeId
+                    EmployeeId = Employees.EmployeeId,
+                    Age=Employees.Age,
+                    IsLocked=Employees.IsLocked
                 }
                 );
             }
@@ -121,7 +124,8 @@ namespace EmployeeManagement.Controllers
                             DepartmentId = EmployeeView.DepartmentId,
                             Address = EmployeeView.Address,
                             MobileNumber = EmployeeView.MobileNumber,
-                            EmployeeId = EmployeeView.EmployeeId
+                            EmployeeId = EmployeeView.EmployeeId,
+                            Age = EmployeeView.Age
                         }
                         );
                     }
@@ -207,6 +211,30 @@ namespace EmployeeManagement.Controllers
                 ViewBag.Images = PostImages;
 
                 return View("List", EmployeeList);
+            }
+            else
+                return RedirectToAction("Index", "Employee");
+        }
+
+        [HttpGet]
+        public ActionResult Unlock(int id,EmployeeViewModel EmployeeView)
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                Dictionary<int, string> PostImages = new Dictionary<int, string>();
+
+                iEmployeeService.Unlock(id);
+
+                var EmployeeList = DtoListMappedToView(iEmployeeService.GetEmployees());
+                ViewBag.Base64String = EmployeeList;
+                foreach (var emp in EmployeeList)
+                {
+                    PostImages.Add(emp.EmployeeId, Convert.ToBase64String(emp.Photo));
+
+                }
+                ViewBag.Images = PostImages;
+
+                return View("List",EmployeeList);
             }
             else
                 return RedirectToAction("Index", "Employee");

@@ -83,3 +83,6 @@ C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccess
 C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
 C:\Users\Exp\documents\visual studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.RequiredProperty.resources
 C:\Users\Exp\documents\visual studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.RequiredPropertyChange.resources
+C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
+C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.NewPropertyAge.resources
+C:\Users\Exp\Documents\Visual Studio 2015\Projects\EmployeeManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.NewLockProperties.resources

@@ -16,6 +16,9 @@ namespace DataAccessLayer.Models
         public byte[] Photo { get; set; }
         public string Address { get; set; }
         public long MobileNumber { get; set; }
+        public int Age { get; set; }
+        public int Attempts { get; set; }
+        public bool IsLocked { get; set; }
 
         public virtual int DepartmentId { get; set; }
         public virtual Department Department { get; set; }

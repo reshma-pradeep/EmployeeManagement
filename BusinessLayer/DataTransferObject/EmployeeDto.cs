@@ -13,5 +13,7 @@ namespace BusinessLayer.DataTransferObject
         public long MobileNumber { get; set; }
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
+        public int Age { get; set; }
+        public bool IsLocked { get; set; }
     }
 }

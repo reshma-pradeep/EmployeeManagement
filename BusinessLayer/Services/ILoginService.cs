@@ -6,5 +6,8 @@ namespace BusinessLayer.Services
     {
         int GetUserStatus(LoginDto LoginDto);
         string GetRole(string Username);
+        bool IsAccountLocked(string Username);
+        int GetAttemptCount(string Username);
+        void NewValidAttempt(string Username);
     }
 }
